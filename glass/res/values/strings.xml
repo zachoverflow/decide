@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Decide</string>
+    
+    <string name="flip_coin_voice_trigger">flip a coin</string>
+    <string name="rock_paper_scissors_voice_trigger">rock paper scissors</string>
+
+</resources>
