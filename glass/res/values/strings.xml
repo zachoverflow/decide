@@ -7,5 +7,9 @@
     
     <string name="heads_result_text">heads</string>
     <string name="tails_result_text">tails</string>
+    
+    <string name="rock_result_text">rock</string>
+    <string name="paper_result_text">paper</string>
+    <string name="scissors_result_text">scissors</string>
 
 </resources>
