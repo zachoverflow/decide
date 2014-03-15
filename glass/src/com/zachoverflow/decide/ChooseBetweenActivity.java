@@ -7,18 +7,15 @@ import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 
 /**
  * An activity to choose between a general list of options on behalf of the user
  */
 public class ChooseBetweenActivity extends Activity {
 
-	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+private TextToSpeech speech;
 	
 	@Override
     protected void onResume() {
@@ -28,16 +25,30 @@ public class ChooseBetweenActivity extends Activity {
         		.getExtras()
         		.getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
         
-        ArrayList<String> options = parseVoiceOptions(voiceResults.get(0));
-        this.setContentView(ResultCardHelper.chooseGeneral(options, this).toView());
-    }
+        final ArrayList<String> options = parseVoiceOptions(voiceResults.get(0));        
+        final Activity activity = this;
+        
+        this.speech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+            	activity.setContentView(ResultCardHelper.chooseGeneral(options, activity, speech).toView());
+            }
+        });
+	}
+	
+	@Override
+    public void onDestroy() {
+		this.speech.shutdown();
+		
+		super.onDestroy();
+	}
 	
 	/**
 	 * Break the input string into a list of options
 	 * @param input The string to parse
 	 * @return The parsed options
 	 */
-	@SuppressLint("DefaultLocale") 
+	@SuppressLint("DefaultLocale")
 	private ArrayList<String> parseVoiceOptions(String input) {
 		ArrayList<String> results = new ArrayList<String>();
 		

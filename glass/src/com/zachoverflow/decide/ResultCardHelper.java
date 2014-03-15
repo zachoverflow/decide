@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 
 import com.google.android.glass.app.Card;
 
@@ -21,13 +22,13 @@ public class ResultCardHelper {
 	 * @param context The context to construct the result card within
 	 * @return A card representing the result
 	 */
-	public static Card flipCoin(Context context) {
+	public static Card flipCoin(Context context, TextToSpeech speech) {
 		Random random = new Random();
 		
 		Card result = new Card(context);
 		result.setImageLayout(Card.ImageLayout.FULL);
 		
-		switch (random.nextInt() % 2) {
+		switch (random.nextInt(2)) {
 			case 1:
 				result.setText(R.string.heads_result_text);
 				result.addImage(R.drawable.heads);
@@ -38,6 +39,8 @@ public class ResultCardHelper {
 				break;
 		}
 		
+		speech.speak(result.getText(), TextToSpeech.QUEUE_FLUSH, null);
+		
 		return result;
 	}
 	
@@ -46,13 +49,13 @@ public class ResultCardHelper {
 	 * @param context The context to construct the result card within
 	 * @return A card representing the result
 	 */
-	public static Card rockPaperScissors(Context context) {
+	public static Card rockPaperScissors(Context context, TextToSpeech speech) {
 		Random random = new Random();
 		
 		Card result = new Card(context);
 		result.setImageLayout(Card.ImageLayout.FULL);
 		
-		switch (random.nextInt() % 3) {
+		switch (random.nextInt(3)) {
 			case 2:
 				result.setText(R.string.rock_result_text);
 				result.addImage(R.drawable.rock);
@@ -67,6 +70,8 @@ public class ResultCardHelper {
 				break;
 		}
 		
+		speech.speak(result.getText(), TextToSpeech.QUEUE_FLUSH, null);
+		
 		return result;
 	}
 	
@@ -75,26 +80,28 @@ public class ResultCardHelper {
 	 * @param context The context to construct the result card within
 	 * @return A card representing the result
 	 */
-	public static Card chooseGeneral(ArrayList<String> options, Context context) {
+	public static Card chooseGeneral(ArrayList<String> options, Context context, TextToSpeech speech) {
 		Random random = new Random();
 		
 		if (options.size() == 2) {
 			Collections.sort(options);
 			if (options.get(0).toUpperCase(Locale.US).equals("HEADS")
 					&& options.get(1).toUpperCase(Locale.US).equals("TAILS")) {
-				return flipCoin(context);
+				return flipCoin(context, speech);
 			}
 		} else if (options.size() == 3) {
 			Collections.sort(options);
 			if (options.get(0).toUpperCase(Locale.US).equals("PAPER")
 					&& options.get(1).toUpperCase(Locale.US).equals("ROCK")
 					&& options.get(2).toUpperCase(Locale.US).equals("SCISSORS")) {
-				return rockPaperScissors(context);
+				return rockPaperScissors(context, speech);
 			}
 		}
 		
 		Card result = new Card(context);
-		result.setText(options.get(random.nextInt() % options.size()));
+		result.setText(options.get(random.nextInt(options.size())));
+		
+		speech.speak(result.getText(), TextToSpeech.QUEUE_FLUSH, null);
 		
 		return result;
 	}
