@@ -15,11 +15,18 @@ import android.speech.tts.TextToSpeech;
  */
 public class ChooseBetweenActivity extends Activity {
 
-private TextToSpeech speech;
+    private TextToSpeech speech;
+	private boolean created;
 	
 	@Override
     protected void onResume() {
         super.onResume();
+        
+        if (created) {
+        	return;
+        }
+        
+        created = true;
         
         ArrayList<String> voiceResults = getIntent()
         		.getExtras()

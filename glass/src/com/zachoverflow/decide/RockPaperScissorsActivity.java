@@ -11,10 +11,17 @@ import android.speech.tts.TextToSpeech;
 public class RockPaperScissorsActivity extends Activity {
 
 	private TextToSpeech speech;
+	private boolean created;
 	
 	@Override
     protected void onResume() {
         super.onResume();
+        
+        if (created) {
+        	return;
+        }
+        
+        created = true;
         
         final Activity activity = this;
         this.speech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
