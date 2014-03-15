@@ -1,5 +1,8 @@
 package com.zachoverflow.decide;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
 import java.util.Random;
 
 import android.content.Context;
@@ -48,6 +51,30 @@ public class ResultCardHelper {
 				result.addImage(R.drawable.scissors);
 				break;
 		}
+		
+		return result;
+	}
+	
+	public static Card chooseGeneral(ArrayList<String> options, Context context) {
+		Random random = new Random();
+		
+		if (options.size() == 2) {
+			Collections.sort(options);
+			if (options.get(0).toUpperCase(Locale.US).equals("HEADS")
+					&& options.get(1).toUpperCase(Locale.US).equals("TAILS")) {
+				return flipCoin(context);
+			}
+		} else if (options.size() == 3) {
+			Collections.sort(options);
+			if (options.get(0).toUpperCase(Locale.US).equals("PAPER")
+					&& options.get(1).toUpperCase(Locale.US).equals("ROCK")
+					&& options.get(2).toUpperCase(Locale.US).equals("SCISSORS")) {
+				return rockPaperScissors(context);
+			}
+		}
+		
+		Card result = new Card(context);
+		result.setText(options.get(random.nextInt() % options.size()));
 		
 		return result;
 	}
