@@ -41,7 +41,7 @@ public class ChooseBetweenActivity extends Activity {
 	private ArrayList<String> parseVoiceOptions(String input) {
 		ArrayList<String> results = new ArrayList<String>();
 		
-		for (String option : input.split("(?i)\\s((or)|(and))\\s")) {
+		for (String option : input.split("\\s((or)|(and))\\s")) {
 			String trimmed = option.trim();
 			if (trimmed.length() > 0) {
 				results.add(option.toLowerCase(Locale.getDefault()));
