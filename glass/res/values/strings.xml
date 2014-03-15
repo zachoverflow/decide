@@ -4,5 +4,8 @@
     
     <string name="flip_coin_voice_trigger">flip a coin</string>
     <string name="rock_paper_scissors_voice_trigger">rock paper scissors</string>
+    
+    <string name="heads_result_text">heads</string>
+    <string name="tails_result_text">tails</string>
 
 </resources>
