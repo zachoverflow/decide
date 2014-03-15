@@ -1,3 +1,5 @@
+// Copyright 2014 Zach Johnson (zachoverflow)
+
 package com.zachoverflow.decide;
 
 import java.util.ArrayList;
@@ -9,8 +11,16 @@ import android.content.Context;
 
 import com.google.android.glass.app.Card;
 
+/**
+ *  Helps with choosing and constructing result cards
+ */
 public class ResultCardHelper {
 
+	/**
+	 * Performs a coin flip
+	 * @param context The context to construct the result card within
+	 * @return A card representing the result
+	 */
 	public static Card flipCoin(Context context) {
 		Random random = new Random();
 		
@@ -31,6 +41,11 @@ public class ResultCardHelper {
 		return result;
 	}
 	
+	/**
+	 * Chooses rock, paper, or scissors
+	 * @param context The context to construct the result card within
+	 * @return A card representing the result
+	 */
 	public static Card rockPaperScissors(Context context) {
 		Random random = new Random();
 		
@@ -55,6 +70,11 @@ public class ResultCardHelper {
 		return result;
 	}
 	
+	/**
+	 * Chooses between a list of options, with overrides for coin flips or rock paper scissors
+	 * @param context The context to construct the result card within
+	 * @return A card representing the result
+	 */
 	public static Card chooseGeneral(ArrayList<String> options, Context context) {
 		Random random = new Random();
 		

@@ -1,3 +1,5 @@
+// Copyright 2014 Zach Johnson (zachoverflow)
+
 package com.zachoverflow.decide;
 
 import java.util.ArrayList;
@@ -7,8 +9,10 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 
+/**
+ * An activity to choose between a general list of options on behalf of the user
+ */
 public class ChooseBetweenActivity extends Activity {
 
 	@Override
@@ -28,11 +32,16 @@ public class ChooseBetweenActivity extends Activity {
         this.setContentView(ResultCardHelper.chooseGeneral(options, this).toView());
     }
 	
+	/**
+	 * Break the input string into a list of options
+	 * @param input The string to parse
+	 * @return The parsed options
+	 */
 	@SuppressLint("DefaultLocale") 
 	private ArrayList<String> parseVoiceOptions(String input) {
 		ArrayList<String> results = new ArrayList<String>();
 		
-		for (String option : input.split("\\s((or)|(and))\\s")) {
+		for (String option : input.split("(?i)\\s((or)|(and))\\s")) {
 			String trimmed = option.trim();
 			if (trimmed.length() > 0) {
 				results.add(option.toLowerCase(Locale.getDefault()));

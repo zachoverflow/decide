@@ -1,3 +1,4 @@
+<!-- Copyright 2014 Zach Johnson (zachoverflow) -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zachoverflow.decide"
     android:versionCode="1"

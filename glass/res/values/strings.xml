@@ -2,12 +2,14 @@
 
     <string name="app_name">Decide</string>
     
+    <!-- voice triggers -->
     <string name="flip_coin_voice_trigger">flip a coin</string>
     <string name="rock_paper_scissors_voice_trigger">rock paper scissors</string>
     
     <string name="choose_between_voice_trigger">choose between</string>
     <string name="choose_between_voice_prompt">what are your options</string>
     
+    <!-- result strings -->
     <string name="heads_result_text">heads</string>
     <string name="tails_result_text">tails</string>
     
