@@ -99,7 +99,6 @@ public class ResultCardHelper {
 				speech.speak(result.getText(), TextToSpeech.QUEUE_FLUSH, null);
 				return result;
 			}
-			
 		} else if (options.size() == 3) {
 			Collections.sort(options);
 			if (options.get(0).toUpperCase(Locale.US).equals("PAPER")
