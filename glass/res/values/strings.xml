@@ -17,5 +17,7 @@
     <string name="rock_result_text">rock</string>
     <string name="paper_result_text">paper</string>
     <string name="scissors_result_text">scissors</string>
+    
+    <string name="why_not_both_result_text">why not both?</string>
 
 </resources>

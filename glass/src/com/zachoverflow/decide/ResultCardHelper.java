@@ -89,6 +89,17 @@ public class ResultCardHelper {
 					&& options.get(1).toUpperCase(Locale.US).equals("TAILS")) {
 				return flipCoin(context, speech);
 			}
+			
+			// 1/10 gets the why not both easter egg
+			if (random.nextInt(10) == 0) {
+				Card result = new Card(context);
+				result.setImageLayout(Card.ImageLayout.FULL);
+				result.setText(R.string.why_not_both_result_text);
+				result.addImage(R.drawable.whynotboth);
+				speech.speak(result.getText(), TextToSpeech.QUEUE_FLUSH, null);
+				return result;
+			}
+			
 		} else if (options.size() == 3) {
 			Collections.sort(options);
 			if (options.get(0).toUpperCase(Locale.US).equals("PAPER")
